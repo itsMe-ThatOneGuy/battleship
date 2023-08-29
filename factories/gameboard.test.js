@@ -45,9 +45,17 @@ describe('gameboard', () => {
 		);
 	});
 
-	test('Board receives attacks', () => {});
+	test('Board receives attacks', () => {
+		testGameboard.placeShip(0, 0, 'horizontal', {
+			length: 2,
+		});
+		expect(testGameboard.receiveAttack(0, 0)).toBe(true);
+	});
 
-	test('Board keeps track of missed shots', () => {});
+	test('Board keeps track of missed shots', () => {
+		testGameboard.receiveAttack(0, 0);
+		expect(testGameboard.getMisses(0, 0)).toBe(true);
+	});
 
 	test('Board reports if ship has sunk', () => {});
 });
