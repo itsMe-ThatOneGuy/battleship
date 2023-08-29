@@ -41,7 +41,12 @@ class Gameboard {
 
 	receiveAttack(column, row) {
 		const space = this.gameboard[column][row];
-		space.ship !== null ? (space.hit = true) : (space.miss = true);
+		if (space.ship !== null) {
+			space.hit = true;
+			space.ship.hit();
+		} else {
+			space.miss = true;
+		}
 		return true;
 	}
 
@@ -53,6 +58,10 @@ class Gameboard {
 	getMisses(column, row) {
 		const space = this.gameboard[column][row];
 		return space.miss;
+	}
+
+	isShipSunk(ship) {
+		return ship.isSunk();
 	}
 }
 export default Gameboard;
