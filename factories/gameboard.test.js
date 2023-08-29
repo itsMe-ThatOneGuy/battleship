@@ -1,9 +1,11 @@
 import Gameboard from './gameboard';
+import { Ship } from './ship';
 
 describe('gameboard', () => {
-	let testGameboard;
+	let testGameboard, testShip;
 	beforeEach(() => {
 		testGameboard = new Gameboard();
+		testShip = new Ship(2);
 	});
 
 	test('Gameboard is created with 10 columns', () => {
@@ -46,9 +48,7 @@ describe('gameboard', () => {
 	});
 
 	test('Board receives attacks', () => {
-		testGameboard.placeShip(0, 0, 'horizontal', {
-			length: 2,
-		});
+		testGameboard.placeShip(0, 0, 'horizontal', testShip);
 		expect(testGameboard.receiveAttack(0, 0)).toBe(true);
 	});
 
@@ -57,5 +57,17 @@ describe('gameboard', () => {
 		expect(testGameboard.getMisses(0, 0)).toBe(true);
 	});
 
-	test('Board reports if ship has sunk', () => {});
+	test('Board keeps track of hits', () => {
+		testGameboard.placeShip(0, 0, 'horizontal', testShip);
+		testGameboard.receiveAttack(0, 0);
+		expect(testGameboard.getHits(0, 0)).toBe(true);
+	});
+
+	test('Board reports if ship has sunk', () => {
+		testGameboard.placeShip(0, 0, 'horizontal', testShip);
+		testGameboard.receiveAttack(0, 0);
+		testGameboard.receiveAttack(0, 1);
+		console.log(testShip);
+		expect(testGameboard.isShipSunk(testShip)).toBe(true);
+	});
 });
