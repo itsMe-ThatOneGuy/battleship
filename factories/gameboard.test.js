@@ -7,8 +7,12 @@ describe('gameboard', () => {
 		return testGameboard;
 	});
 
-	test('Gameboard is created as a 10x10 grid', () => {
+	test('Gameboard is created with 10 columns', () => {
 		expect(testGameboard.gameboard.length).toBe(10);
+	});
+
+	test('Gameboard is created with 10 rows', () => {
+		expect(testGameboard.gameboard[0].length).toBe(10);
 	});
 
 	test('Ship should be placed a provided space', () => {});
