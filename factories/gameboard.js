@@ -38,5 +38,21 @@ class Gameboard {
 			}
 		}
 	}
+
+	receiveAttack(column, row) {
+		const space = this.gameboard[column][row];
+		space.ship !== null ? (space.hit = true) : (space.miss = true);
+		return true;
+	}
+
+	getHits(column, row) {
+		const space = this.gameboard[column][row];
+		return space.hit;
+	}
+
+	getMisses(column, row) {
+		const space = this.gameboard[column][row];
+		return space.miss;
+	}
 }
 export default Gameboard;
