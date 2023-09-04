@@ -1,22 +1,27 @@
 export class Ship {
-    constructor(length) {
-        this.length = length;
-        this.hits = 0;
-    }
+	constructor(name, length) {
+		this.name = name;
+		this.length = length;
+		this.hits = 0;
+	}
 
-    test() {
-        return 'hello world';
-    }
+	getName() {
+		return this.name;
+	}
 
-    hit() {
-        return this.hits++;
-    }
+	getLength() {
+		return this.length;
+	}
 
-    getHits() {
-        return this.hits;
-    }
+	hit() {
+		return this.hits++;
+	}
 
-    isSunk() {
-        return this.hits === this.length ? true : false;
-    }
+	getHits() {
+		return this.hits;
+	}
+
+	isSunk() {
+		return this.hits === this.length ? true : false;
+	}
 }
