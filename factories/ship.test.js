@@ -2,13 +2,16 @@ import { Ship } from './ship.js';
 
 describe('Ship', () => {
 	let testShip;
-	beforeAll(() => {
-		testShip = new Ship(1);
-		return testShip;
+	beforeEach(() => {
+		testShip = new Ship('test', 1);
 	});
 
-	test('Ship Method test returns hello world', () => {
-		expect(testShip.test()).toBe('hello world');
+	test('Shit is made with given name', () => {
+		expect(testShip.getName()).toBe('test');
+	});
+
+	test('Ship is made with given length', () => {
+		expect(testShip.getLength()).toBe(1);
 	});
 
 	test('Ship receives hits', () => {
@@ -17,6 +20,7 @@ describe('Ship', () => {
 	});
 
 	test('Ship is sunk', () => {
-		expect(testShip.isSunk()).toBeTruthy();
+		testShip.hit(1);
+		expect(testShip.isSunk()).toBe(true);
 	});
 });

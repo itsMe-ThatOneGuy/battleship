@@ -5,7 +5,7 @@ describe('gameboard', () => {
 	let testGameboard, testShip;
 	beforeEach(() => {
 		testGameboard = new Gameboard();
-		testShip = new Ship(2);
+		testShip = new Ship('testShip', 2);
 	});
 
 	test('Gameboard is created with 10 columns', () => {
@@ -17,10 +17,7 @@ describe('gameboard', () => {
 	});
 
 	test('Ship is placed horizontally starting at provided space', () => {
-		testGameboard.placeShip(0, 0, 'horizontal', {
-			length: 2,
-			name: 'testShip',
-		});
+		testGameboard.placeShip(0, 0, 'horizontal', testShip);
 		expect(
 			testGameboard.gameboard[0][0].ship.name &&
 				testGameboard.gameboard[1][0].ship.name
@@ -28,7 +25,7 @@ describe('gameboard', () => {
 	});
 
 	test('Ship is placed vertically starting at provided space', () => {
-		testGameboard.placeShip(0, 0, 'vertical', { length: 2, name: 'testShip' });
+		testGameboard.placeShip(0, 0, 'vertical', testShip);
 		expect(
 			testGameboard.gameboard[0][0].ship.name &&
 				testGameboard.gameboard[0][1].ship.name
@@ -36,13 +33,13 @@ describe('gameboard', () => {
 	});
 
 	test('Ship is not placed horizontally if ship would be out of bounds', () => {
-		expect(testGameboard.placeShip(9, 0, 'horizontal', { length: 2 })).toBe(
+		expect(testGameboard.placeShip(9, 0, 'horizontal', testShip)).toBe(
 			'Ship too long'
 		);
 	});
 
 	test('Ship is not placed vertically if ship would be out of bounds', () => {
-		expect(testGameboard.placeShip(0, 9, 'vertical', { length: 2 })).toBe(
+		expect(testGameboard.placeShip(0, 9, 'vertical', testShip)).toBe(
 			'Ship too long'
 		);
 	});
