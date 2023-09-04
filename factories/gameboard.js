@@ -20,21 +20,23 @@ class Gameboard {
 	placeShip(column, row, direction, ship) {
 		if (direction === 'vertical') {
 			if (row + ship.length > 10) {
-				return 'Ship too long';
+				return false;
 			} else {
 				for (let i = 0; i < ship.length; i++) {
 					this.gameboard[column][i].ship = ship;
 				}
+				return true;
 			}
 		}
 
 		if (direction === 'horizontal') {
 			if (column + ship.length > 10) {
-				return 'Ship too long';
+				return false;
 			} else {
 				for (let i = 0; i < ship.length; i++) {
 					this.gameboard[i][row].ship = ship;
 				}
+				return true;
 			}
 		}
 	}
@@ -61,7 +63,7 @@ class Gameboard {
 	}
 
 	isShipSunk(ship) {
-		return ship.isSunk();
+		return ship.getSunk();
 	}
 }
 export default Gameboard;

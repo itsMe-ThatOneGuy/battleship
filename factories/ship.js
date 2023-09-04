@@ -3,6 +3,7 @@ export class Ship {
 		this.name = name;
 		this.length = length;
 		this.hits = 0;
+		this.sunk = false;
 	}
 
 	getName() {
@@ -14,7 +15,8 @@ export class Ship {
 	}
 
 	hit() {
-		return this.hits++;
+		this.hits++;
+		this.isSunk();
 	}
 
 	getHits() {
@@ -22,6 +24,10 @@ export class Ship {
 	}
 
 	isSunk() {
-		return this.hits === this.length ? true : false;
+		return this.hits === this.length ? (this.sunk = true) : false;
+	}
+
+	getSunk() {
+		return this.sunk;
 	}
 }
