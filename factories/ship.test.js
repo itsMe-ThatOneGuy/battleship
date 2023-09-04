@@ -21,6 +21,6 @@ describe('Ship', () => {
 
 	test('Ship is sunk', () => {
 		testShip.hit(1);
-		expect(testShip.isSunk()).toBe(true);
+		expect(testShip.getSunk()).toBe(true);
 	});
 });

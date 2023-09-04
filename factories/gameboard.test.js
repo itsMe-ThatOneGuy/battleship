@@ -33,15 +33,11 @@ describe('gameboard', () => {
 	});
 
 	test('Ship is not placed horizontally if ship would be out of bounds', () => {
-		expect(testGameboard.placeShip(9, 0, 'horizontal', testShip)).toBe(
-			'Ship too long'
-		);
+		expect(testGameboard.placeShip(9, 0, 'horizontal', testShip)).toBe(false);
 	});
 
 	test('Ship is not placed vertically if ship would be out of bounds', () => {
-		expect(testGameboard.placeShip(0, 9, 'vertical', testShip)).toBe(
-			'Ship too long'
-		);
+		expect(testGameboard.placeShip(0, 9, 'vertical', testShip)).toBe(false);
 	});
 
 	test('Board receives attacks', () => {
@@ -64,7 +60,6 @@ describe('gameboard', () => {
 		testGameboard.placeShip(0, 0, 'horizontal', testShip);
 		testGameboard.receiveAttack(0, 0);
 		testGameboard.receiveAttack(0, 1);
-		console.log(testShip);
 		expect(testGameboard.isShipSunk(testShip)).toBe(true);
 	});
 });
