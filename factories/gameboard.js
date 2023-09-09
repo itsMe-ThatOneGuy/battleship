@@ -17,6 +17,10 @@ class Gameboard {
 			.map((_) => new Array(10).fill(new GameboardSpace()));
 	}
 
+	getGameboard() {
+		return this.gameboard;
+	}
+
 	placeShip(column, row, direction, ship) {
 		if (direction === 'vertical') {
 			if (row + ship.length > 10) {
