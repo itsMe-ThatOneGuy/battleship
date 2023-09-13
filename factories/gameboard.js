@@ -21,6 +21,36 @@ class Gameboard {
 		return this.gameboard;
 	}
 
+	validateShipPosition(column, row, direction, ship) {
+		let positionValid;
+		for (let i = 0; i < ship.length; i++) {
+			if (direction === 'vertical') {
+				if (row + ship.length > 10) {
+					positionValid = false;
+					break;
+				} else if (this.gameboard[column][i].ship !== null) {
+					positionValid = false;
+					break;
+				} else {
+					positionValid = true;
+				}
+			}
+
+			if (direction === 'horizontal') {
+				if (column + ship.length > 10) {
+					positionValid = false;
+					break;
+				} else if (this.gameboard[column][i].ship !== null) {
+					positionValid = false;
+					break;
+				} else {
+					positionValid = true;
+				}
+			}
+		}
+		return positionValid;
+	}
+
 	placeShip(column, row, direction, ship) {
 		if (direction === 'vertical') {
 			if (row + ship.length > 10) {
