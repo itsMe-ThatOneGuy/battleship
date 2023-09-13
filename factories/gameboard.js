@@ -52,27 +52,26 @@ class Gameboard {
 	}
 
 	placeShip(column, row, direction, ship) {
-		if (direction === 'vertical') {
-			if (row + ship.length > 10) {
-				return false;
-			} else {
+		const placementValidation = this.validateShipPosition(
+			column,
+			row,
+			direction,
+			ship
+		);
+
+		if (placementValidation === true) {
+			if (direction === 'vertical') {
 				for (let i = 0; i < ship.length; i++) {
 					this.gameboard[column][i].ship = ship;
 				}
-				return true;
 			}
-		}
-
-		if (direction === 'horizontal') {
-			if (column + ship.length > 10) {
-				return false;
-			} else {
+			if (direction === 'horizontal') {
 				for (let i = 0; i < ship.length; i++) {
 					this.gameboard[i][row].ship = ship;
 				}
-				return true;
 			}
 		}
+		return placementValidation;
 	}
 
 	receiveAttack(column, row) {
