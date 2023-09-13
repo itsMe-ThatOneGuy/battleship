@@ -16,6 +16,32 @@ describe('gameboard', () => {
 		expect(testGameboard.gameboard[0].length).toBe(10);
 	});
 
+	test('validateShipPosition reports a ship is in vertical path', () => {
+		testGameboard.placeShip(0, 0, 'vertical', testShip);
+		expect(testGameboard.validateShipPosition(0, 0, 'vertical', testShip)).toBe(
+			false
+		);
+	});
+
+	test('validateShipPosition reports a ship is in horizontal path', () => {
+		testGameboard.placeShip(0, 0, 'horizontal', testShip);
+		expect(
+			testGameboard.validateShipPosition(0, 0, 'horizontal', testShip)
+		).toBe(false);
+	});
+
+	test('validateShipPosition reports no ship in vertical path', () => {
+		expect(testGameboard.validateShipPosition(0, 0, 'vertical', testShip)).toBe(
+			true
+		);
+	});
+
+	test('validateShipPosition reports no ship in horizontal path', () => {
+		expect(
+			testGameboard.validateShipPosition(0, 0, 'horizontal', testShip)
+		).toBe(true);
+	});
+
 	test('Ship is placed horizontally starting at provided space', () => {
 		testGameboard.placeShip(0, 0, 'horizontal', testShip);
 		expect(
